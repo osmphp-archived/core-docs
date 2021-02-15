@@ -1,0 +1,3 @@
+# Common Gotchas
+
+{{ toc }}
