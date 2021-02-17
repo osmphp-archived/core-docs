@@ -1,3 +1,3 @@
-# Other Articles
+# Other
 
 {{ child_pages }}
