@@ -1,0 +1,3 @@
+# Dynamic Traits
+
+{{ toc }}
