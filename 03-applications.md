@@ -12,15 +12,15 @@ Out of the box application classes make up an inheritance hierarchy:
         My\App              # your production app
             My\Samples\App  # a sample app that you run in unit tests
 
-Applications don't tell what modules they include. Vice versa, modules define what application they are for. However, the application class inheritance affects module registration. If some module registers itself with the base class `Osm\Core\App`, it's automatically registered with its derived classes, `My\App` and `My\Samples\App`.    
+Applications don't tell what modules they include. Vice versa, modules define what application they are for. However, the application class inheritance affects module registration. If some module registers itself with the base class `Osm\Core\App`, it's automatically registered with its derived classes `My\App` and `My\Samples\App`.    
 
-For example, the `My\FirstModule\Module` registers itself with `My\App`, and due to inheritance, it also loaded as a part of `My\Samples\App`. The `My\Tests\test_01_first_module::test_that_module_is_loaded()` demonstrates that.
+For example, the `My\FirstModule\Module` registers itself with `My\App`, and due to inheritance, it also is loaded as a part of `My\Samples\App`. The `My\Tests\test_01_first_module::test_that_module_is_loaded()` demonstrates that.
 
 ## Compiling Application
 
 In context of the Osm Core library, compilation is a process of bundling of application modules together into a codebase that operates as a monolith. Basically, compilation does two things: 
 
-1. As you will learn in the [Dynamic Traits](dynamic-traits.html) section, modules can add custom properties and methods, or override existing ones, in the classes of other modules, and, in order to make it possible, some code have to be generated.
+1. As you will learn in the [Dynamic Traits](dynamic-traits.html) section, module can add custom properties and methods or override existing ones in the classes of other modules, and, in order to make it possible, some code has to be generated.
 
 2. Searching for modules and reflecting through class hierarchies takes time, and in order to eliminate this overhead from the application footprint, all this information is collected during compilation phase, and serialized into a file. 
 
@@ -67,7 +67,7 @@ Run the application by calling `Apps::run()` method:
 
 ### From Another Application
 
-Uou can run an application from the already running application as follows:
+You can run an application from the already running application as follows:
 
 Run the application by calling `Apps::run()` method:
 
@@ -84,7 +84,7 @@ Run the application by calling `Apps::run()` method:
 
 Before running the application, `Apps::run()` initializes it:
 
-1. The generated code (remember modules that add custom code to the classes of other modules?) is loaded.
+1. The generated code (do you remember modules that add custom code to the classes of other modules?) is loaded.
 2. The application object containing all the information about modules and PHP classes is un-serialized. 
 3. The global `$osm_app` variable is initialized with a reference to the application object. 
 
@@ -94,5 +94,5 @@ Yes, you have read it correctly. The Osm Core library maintains a global variabl
 
 `$osm_app` serves as a service container. Compared to the main alternative - dependency injection - the code written using service container pattern is a lot easier to read and maintain. 
 
-In order to prevent occasional variable assignment, this variable could have been hidden behind a function `get_app()`. Actually, it was in the initial library design, but while optimizing performance of one read-world application, we have found that using variable directly reduces the application footprint by 100ms compared to using the `get_app()` function, and the `get_app()` function was removed. 
+In order to prevent occasional variable assignment, this variable could have been hidden behind a function `get_app()`. Actually, it was in the initial library design, but while optimizing performance of one read-world application, we have found that using variable directly reduces the application footprint by 100ms compared to using the `get_app()` function, therefore the `get_app()` function was removed. 
 
