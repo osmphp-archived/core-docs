@@ -1,6 +1,6 @@
 # Main Concepts
 
-In this section, you'll learn the main concepts used in Osm core.
+In this section, you'll learn the main concepts used in Osm Core.
 
 Short version:
 
@@ -15,7 +15,7 @@ Long version:
 
 ## Typical Project Directory
 
-Project's directory structure have already been discussed in the [Getting Started](getting-started.html#directory-structure) section. 
+Project's directory structure has already been discussed in the [Getting Started](getting-started.html#directory-structure) section. 
 
 Let's return to it one more time, this time with a more meaningful example. The application is an e-commerce store, and the modules implements different parts of it:
 
@@ -43,7 +43,7 @@ Let's return to it one more time, this time with a more meaningful example. The 
 
 ## Applications
 
-In Osm core, the word "application" (or "app") is slightly different from how we usually use it. A typical application - be it Facebook or Word - is a bunch of files that you can "run" as one thing. When using Osm core, the bunch of files - **the project - may contain many applications** that you can run, and these applications are quite different. 
+In Osm Core, the word "application" (or "app") is slightly different from how we usually use it. A typical application - be it Facebook or Word - is a bunch of files that you can "run" as one thing. When using Osm core, the bunch of files - **the project - may contain many applications** that you can run, and these applications are quite different. 
 
 First, there is the main application of the project that implements main functionality. For example, in an e-commerce project, the main application handles product catalog, cart, and checkout.
 
@@ -51,7 +51,7 @@ Second, there are sample applications that are used internally in unit tests to 
 
 Finally, there are utility applications that you use for developing and maintaining the project.
 
-In code, an application is defined as a PHP class:
+From code perspective an application is defined as a PHP class:
 
     namespace My;
 
@@ -62,7 +62,7 @@ In code, an application is defined as a PHP class:
 
 Applications are combined from modules. It's like a puzzle. If you combine one set of modules, you'll get an e-commerce application, if you use another set of modules - you'll get a blog application.
 
-Some modules are application-specific, while other modules are generic. For example a product catalog is specific for an e-commerce application, and a module responsible for internationalization is generic, and can be used in many applications.
+Some modules are application-specific, while other modules are generic. For example a product catalog is specific for an e-commerce application, at the same time a module responsible for internationalization is generic and can be used in many applications.
 
 In code, a module is a directory containing a `Module.php` file that defines a module PHP class:
 
@@ -73,9 +73,9 @@ In code, a module is a directory containing a `Module.php` file that defines a m
 
 ## Composer Packages
 
-Osm core is installed using [Composer](https://getcomposer.org/). In Composer, the project defines the Composer packages it uses, and these packages are downloaded into the `vendor` directory. The project is considered to be a package, too (it's named the "root" package).
+Osm Core is installed using [Composer](https://getcomposer.org/). In Composer the project defines the Composer packages it uses, and these packages are downloaded into the `vendor` directory. The project is considered to be a package, too (it's named the "root" package).
 
-Every package has a `composer.json` file, and this file specifies in its `autoload` and `autoload-dev` sections where the PHP classes are, and what namespaces they have. For example, `osmphp/core` package stores PHP classes in to directories, `runtime` and `src`:
+Every package has a `composer.json` file, and this file specifies in its `autoload` and `autoload-dev` sections where the PHP classes are, and what namespaces they have. For example, `osmphp/core` package stores PHP classes in to directories in `runtime` and `src` directories:
 
     "autoload": {
         ...
@@ -87,7 +87,7 @@ Every package has a `composer.json` file, and this file specifies in its `autolo
 
 ## Module Groups
 
-Applications search for their modules in all the directories marked as "module groups" and listed in `autoload.psr-4` and `autoload-dev.psr-4` sections of every installed package, including the root package.
+Application search for its modules in all the directories marked as "module groups" and listed in `autoload.psr-4` and `autoload-dev.psr-4` sections of every installed package, including the root package.
 
 Mark a source directory as module group by adding a `ModuleGroup.php` file that defines a module group PHP class:
 
